@@ -33,8 +33,8 @@ export function useWallet() {
 
   async function logout() {
     isKukai
-      ? await kukaiEmbed.logout()
-      : await beaconWallet.clearActiveAccount();
+      ? await kukaiEmbed?.logout()
+      : await beaconWallet?.clearActiveAccount();
     setAuthenticated(undefined);
     setIsKukai(undefined);
     setWallet(undefined);

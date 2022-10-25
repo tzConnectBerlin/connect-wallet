@@ -1,10 +1,9 @@
 import React from "react";
 import { useWallet } from "../hooks/wallet";
-import useEventCallback from '../utils/event-callback'
 import styles from "../styles/Home.module.css";
 
-export const Wallet = () => {
-  const { init, authenticated, walletAddress, logout, login } = useWallet();
+export const MultiConnection = () => {
+  const { init, authenticated, walletAddress, logoutWallet, login } = useWallet();
 
   React.useEffect(() => {
     init();
@@ -13,18 +12,17 @@ export const Wallet = () => {
 
   return (
     <div>
-      {authenticated && (
-        <div className={styles.title}>Wallet address is {walletAddress}</div>
-      )}
-
       {authenticated ? (
-        <button
-          className={styles.button}
-          onClick={logout}
-          textTransform="uppercase"
-        >
-          disconnect wallet
-        </button>
+        <>
+          <div className={styles.title}>Wallet address is {walletAddress}</div>
+          <button
+            className={styles.button}
+            onClick={logoutWallet}
+            textTransform="uppercase"
+          >
+            disconnect wallet
+          </button>
+        </>
       ) : (
         <>
           <button className={styles.button} onClick={loginWallet(true)}>

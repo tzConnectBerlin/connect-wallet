@@ -10,7 +10,16 @@ export function useWallet() {
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState();
 
-  return { initialized, address, error, loading, connect, initWallet, getAddress };
+  return {
+    initialized,
+    address,
+    error,
+    loading,
+    connect,
+    initWallet,
+    getAddress,
+    logoutWallet,
+  };
 
   async function connect() {
     setLoading(true);
@@ -45,5 +54,12 @@ export function useWallet() {
       const permissions = await wallet.client.requestPermissions();
       return permissions.address;
     }
+  }
+
+  async function logoutWallet() {
+    if (address) await wallet.clearActiveAccount();
+
+    setWallet(undefined);
+    setAddress(null);
   }
 }

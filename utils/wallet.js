@@ -13,7 +13,7 @@ export const initTezos = () => {
   tezos.setPackerProvider(new MichelCodecPacker())
 }
 
-export const initWallet = () => {
+export const initBeacon = () => {
   if (beaconWallet !== null) {
     return beaconWallet
   }
@@ -27,7 +27,7 @@ export const initWallet = () => {
 
     beaconWallet = new BeaconWallet(options)
   } catch (e) {
-    console.error('initWallet', e)
+    console.error('initBeacon', e)
   }
   return beaconWallet
 }

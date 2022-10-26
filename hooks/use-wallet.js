@@ -34,6 +34,8 @@ export function useWallet() {
   }
 
   async function initWallet() {
+    if (initialized) return;
+
     const options = {
       name: "sample",
     };
@@ -52,14 +54,13 @@ export function useWallet() {
       return activeAccount.address;
     } else {
       const permissions = await wallet.client.requestPermissions();
+      // console.log(wallet.client.permissions);
       return permissions.address;
     }
   }
 
   async function logoutWallet() {
     if (address) await wallet.clearActiveAccount();
-
-    setWallet(undefined);
     setAddress(null);
   }
 }

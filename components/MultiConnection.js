@@ -18,7 +18,6 @@ export const MultiConnection = () => {
           <button
             className={styles.button}
             onClick={logoutWallet}
-            textTransform="uppercase"
           >
             disconnect wallet
           </button>

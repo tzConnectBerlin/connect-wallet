@@ -2,13 +2,14 @@ import { useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { RPC_URL } from "./config";
+import { getAccount } from "../api/tzkt";
 
 export function useWallet() {
   const [initialized, setInit] = useState(false);
   const [address, setAddress] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [wallet, setWallet] = useState();
+  const [wallet, setWallet] = useState(undefined);
 
   return {
     initialized,
@@ -26,6 +27,8 @@ export function useWallet() {
     try {
       const userAddress = await getAddress();
       setAddress(userAddress);
+
+
     } catch (error) {
       setError(error.message);
     } finally {
@@ -35,6 +38,7 @@ export function useWallet() {
 
   async function initWallet() {
     if (initialized) return;
+    console.log("initializing");
 
     const options = {
       name: "sample",

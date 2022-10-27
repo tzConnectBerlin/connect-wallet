@@ -12,6 +12,7 @@
     "@airgap/beacon-sdk": "^3.1.1",
     "@taquito/beacon-wallet": "^12.1.1",
     "@taquito/taquito": "^12.1.1",
+    "axios": "^1.1.3",
     "kukai-embed": "^0.8.2",
     "next": "12.3.1",
     "react": "18.2.0",

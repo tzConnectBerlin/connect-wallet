@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useWallet } from "../hooks/use-wallet";
 import { getAccount } from "../api/tzkt";
-import { UploadToIPFS } from "../utils/uploadToIpfs";
-import * as styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 
 interface TokenData {
   name: string;
@@ -18,7 +17,6 @@ export const SingleConnection = () => {
 
   React.useEffect(() => {
     initWallet();
-    UploadToIPFS();
   });
 
   const getToken = (accountData: any) => {
@@ -100,6 +98,8 @@ export const SingleConnection = () => {
           )}
         </>
       )}
+
+
     </div>
   );
 };

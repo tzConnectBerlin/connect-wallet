@@ -6,7 +6,7 @@ import { getAccount } from "../api/tzkt";
 
 export function useWallet() {
   const [initialized, setInit] = useState(false);
-  const [address, setAddress] = useState(undefind);
+  const [address, setAddress] = useState(undefined);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState(undefined);
@@ -63,6 +63,6 @@ export function useWallet() {
 
   async function logoutWallet() {
     if (address) await wallet.clearActiveAccount();
-    setAddress(null);
+    setAddress(undefined);
   }
 }

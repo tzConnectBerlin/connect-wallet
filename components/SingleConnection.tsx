@@ -1,20 +1,28 @@
 import React from "react";
 import Image from "next/image";
 import { useWallet } from "../hooks/use-wallet";
-import styles from "../styles/Home.module.css";
 import { getAccount } from "../api/tzkt";
+import { UploadToIPFS } from "../utils/uploadToIpfs";
+import * as styles from "../styles/Home.module.css";
+
+interface TokenData {
+  name: string;
+  thumbnailUri: string;
+  artifactUri: string;
+}
 
 export const SingleConnection = () => {
   const { initWallet, logoutWallet, connect, address } = useWallet();
 
-  const [tokens, setTokens] = React.useState([]);
+  const [tokens, setTokens] = React.useState<TokenData[]>([]);
 
   React.useEffect(() => {
     initWallet();
+    UploadToIPFS();
   });
 
-  const getToken = (accountData) => {
-    const tokensUri = accountData.map((d) => {
+  const getToken = (accountData: any) => {
+    const tokensUri = accountData.map((d: any) => {
       return {
         name: d.token.metadata.name,
         thumbnailUri: d.token.metadata.thumbnailUri.replace("ipfs://", ""),
@@ -26,6 +34,7 @@ export const SingleConnection = () => {
   };
 
   const fetchData = React.useCallback(async () => {
+    if (!!!address) return;
     const data = await getAccount(address);
     if (data) {
       console.log(data);

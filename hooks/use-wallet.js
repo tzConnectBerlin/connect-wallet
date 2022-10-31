@@ -6,7 +6,7 @@ import { getAccount } from "../api/tzkt";
 
 export function useWallet() {
   const [initialized, setInit] = useState(false);
-  const [address, setAddress] = useState(null);
+  const [address, setAddress] = useState(undefind);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState(undefined);
@@ -27,8 +27,6 @@ export function useWallet() {
     try {
       const userAddress = await getAddress();
       setAddress(userAddress);
-
-
     } catch (error) {
       setError(error.message);
     } finally {

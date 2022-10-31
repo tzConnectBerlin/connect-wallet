@@ -1,6 +1,6 @@
 import React from "react";
 import { useWallet } from "../hooks/wallet";
-import styles from "../styles/Home.css";
+import styles from "../styles/Home.module.css";
 
 export const MultiConnection = () => {
   const { init, authenticated, walletAddress, logoutWallet, login } =
@@ -9,7 +9,7 @@ export const MultiConnection = () => {
   React.useEffect(() => {
     init();
   }, []);
-  const loginWallet = (isSocial) => () => login(isSocial);
+  const loginWallet = (isSocial: boolean) => () => login(isSocial);
 
   return (
     <div>

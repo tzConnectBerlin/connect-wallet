@@ -2,7 +2,6 @@ import { useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { RPC_URL } from "./config";
-import { getAccount } from "../api/tzkt";
 
 export function useWallet() {
   const [initialized, setInit] = useState(false);
